@@ -7,6 +7,7 @@ import java.awt.image.BufferedImage;
 import java.awt.image.BufferStrategy;
 import java.awt.image.DataBufferInt;
 import javax.swing.JFrame;
+import com.kanikos.six.graphics.Sprite;
 
 public class Window {
 	// window properties 
@@ -48,11 +49,13 @@ public class Window {
 			pixels[i] = 0x000000;
 	}
 
-	public void render() {
+	public void render(Sprite sprite, int x, int y, byte transformation) {
 		clear();
 
 		BufferStrategy bs = viewport.getBufferStrategy();
 		Graphics g = bs.getDrawGraphics();
+
+		sprite.render(pixels, raster.getWidth(), raster.getHeight(), x, y, transformation);
 
 		g.drawImage(raster, 0, 0, viewport.getWidth(), viewport.getHeight(), null);
 		bs.show();
