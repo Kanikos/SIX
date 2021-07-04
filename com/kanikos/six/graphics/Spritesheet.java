@@ -8,7 +8,7 @@ import javax.imageio.ImageIO;
 public class Spritesheet {
 	// properties
 	
-	private Sprite[] sprites;
+	private int[][] sprites;
 	private int dimensions;
 	private int width, height;
 
@@ -25,21 +25,17 @@ public class Spritesheet {
 		this.dimensions	= dimensions;
 		this.width	= spritesheet.getWidth() / dimensions;
 		this.height	= spritesheet.getHeight() / dimensions;
-		this.sprites	= new Sprite[width * height];
+		this.sprites	= new int[width * height][dimensions * dimensions];
 
 		// extract sprites from the spritesheet
-		for(int y = 0; y < height; y++) 
+		for(int y = 0; y < height; y++)
 			for(int x = 0; x < width; x++)
-				sprites[(y * width) + x] = new Sprite(spritesheet, x * dimensions, y * dimensions, dimensions);
+				spritesheet.getRGB(x * dimensions, y * dimensions, dimensions, dimensions, sprites[(y * width) + x], 0, dimensions);
 	}
 
 	// draws the specified sprite onto the raster
 
-	public void render(int[] raster, int rWidth, int rHeight, int ID, int x, int y, byte transformation) {
-		sprites[ID].render(raster, rWidth, rHeight, x, y, transformation);
-	}
-
-	public Sprite getSprite(int ID) {
-		return sprites[ID % sprites.length];
+	public int[] getSprite(int ID) {
+		return sprites[ID];
 	}
 }
