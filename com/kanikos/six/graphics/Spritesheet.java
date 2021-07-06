@@ -4,6 +4,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import com.kanikos.six.comp.Window;
 
 public class Spritesheet {
 	// properties
@@ -34,6 +35,9 @@ public class Spritesheet {
 	}
 
 	// draws the specified sprite onto the raster
+	public void draw(int ID, Window window, int x, int y) {
+		window.draw(sprites[ID], x, y, dimensions, dimensions);
+	}
 
 	public int[] getSprite(int ID) {
 		return sprites[ID];

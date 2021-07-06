@@ -7,6 +7,7 @@ import java.awt.image.BufferedImage;
 import java.awt.image.BufferStrategy;
 import java.awt.image.DataBufferInt;
 import javax.swing.JFrame;
+import com.kanikos.six.input.Keyboard;
 
 public class Window {
 	// window properties 
@@ -39,6 +40,14 @@ public class Window {
 
 		viewport.createBufferStrategy(3);
 	}
+
+	/*
+	 * input methods
+	 */
+
+	 public void addKeyListener(Keyboard keyboard) {
+	 	window.addKeyListener(keyboard);
+	 }
 	
 	/*
 	 * methods that draws to the screen
